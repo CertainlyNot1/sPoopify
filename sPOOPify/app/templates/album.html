@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="album-section">
+    <h2>{{ album.title }}</h2>
+    <p>Release date: {{ album.release_date }}</p>
+    <h3>Album songs:</h3>
+    <ul>
+        {% for song in album.songs %}
+            <li><a href="{{ url_for('main.song', song_id=song.id) }}">{{ song.title }}</a></li>
+        {% endfor %}
+    </ul>
+</section>
+
+{% endblock %}

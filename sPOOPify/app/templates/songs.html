@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="songs-section">
+    <h2>Last songs</h2>
+    <ul class="album-list">
+        {% for song in songs %}
+            <li class="album-item">
+                <a href="{{ url_for('main.song', song_id=song.id) }}" class="album-link">
+                    <h3>{{ song.title }}</h3>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</section>
+
+{% endblock %}

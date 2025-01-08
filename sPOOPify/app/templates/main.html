@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="dashboard-container">
+    <aside class="sidebar">
+        <h2 style="align-items: center; justify-content: center;"><img src="{{ url_for('static', filename='influtrate.png') }}" style = 'width: 27px; height: 25px;' >Фільтри</h2>
+        <ul class="genre-filters">
+            {% for genre in genres %}
+                <li>
+                    <button class="genre-button" data-genre="{{ genre }}">{{ genre }}</button>
+                </li>
+            {% endfor %}
+        </ul>
+    </aside>
+    <main class="main-content">
+        <section class="songs-section"></section>
+            <h2>Last songs</h2>
+            <ul class="songs-list" id="songs-list">
+                {% for song in songs %}
+                    <li class="song-item">
+                        <a href="{{ url_for('main.song', song_id=song.id) }}" class="song-link">
+                            <span class="song-title">{{ song.title }} - {{ song.genre }}</span>
+                        </a>
+                        <div class="audio-container">
+                            <div class="custom-player" data-song="{{ url_for('static', filename='music/' + song.file_path)}}">
+                                <button class="play-pause">▶️</button>
+                                <div class="progress-bar">
+                                    <div class="progress"></div>
+                                </div>
+                                <span class="time">0:00</span>
+                                <input type="range" class="volume-slider" min="0" max="1" step="0.1" value="1">
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+        <section class="artists-section">
+            <h2>Popular artists</h2>
+            <ul class="artists-list">
+                {% for artist in  artists%}
+                    <li class="artist-item">
+                        <a href="{{ url_for('main.artist', artist_id=artist.id) }}" class="artist-link">
+                            <h3>{{ artist.name }}</h3>
+                            <p>{{ artist.bio }}</p>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+        <section class="albums-section">
+            <h2>New albums</h2>
+            <ul class="albums-list">
+                {% for album in albums %}
+                    <li class="album-item">
+                        <a href="{{ url_for('main.album', album_id=album.id) }}" class="album-link">
+                            <h3>{{ album.title }} ({{ album.release_date }})</h3>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+        
+    </main>
+</div>
+{% endblock %}

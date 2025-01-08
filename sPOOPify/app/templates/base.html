@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+    <title>{{title}}</title>
+</head>
+<body>
+    <header>
+        <div class="Logo">
+            <a id = 'logo' href="{{url_for('main.main') }}">
+                <img src="{{ url_for('static', filename='sPOOPify.png') }}">
+            </a>
+        </div>
+        <div class="nav-center">
+            <form class="search-form" action="/search" method="GET">
+                <input type="text" name="query" placeholder="Search..." class="search-input">
+                <button type="submit" class="search-button">🔍</button>
+            </form>
+        </div>
+        <nav class="navbar">
+            <div class="nav-left">
+                <ul class="nav-list">
+                    <li><a href="{{ url_for('main.main') }}">Main</a></li>
+                    <li><a href="{{ url_for('main.artists') }}">Artists</a></li>
+                    <li><a href="{{ url_for('main.albums') }}">Albums</a></li>
+                    <li><a href="{{ url_for('main.songs') }}">Songs</a></li>
+                    <li><a href="{{ url_for('main.playlists') }}">Playlists</a></li>
+                </ul>
+            
+            <div class="nav-right">
+                <ul class="nav-list">
+                    <li class="acc-menu">
+                        <a href="#" class="dropdown-toggle">My account</a>
+                        <ul class="dropdown">
+                            <li><a href="{{ url_for('acc.acc') }}">Configure account</a></li>
+                            <li><a href="{{ url_for('acc.logout') }}">Log out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        
+        
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer><p>æ©®℗Æ∑ sPooPify™ inc. 2024 all right reserved do not distribute</p></footer>
+    <script src="{{ url_for('static', filename='js/player.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/pashalko.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>

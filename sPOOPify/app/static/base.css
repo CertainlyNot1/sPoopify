@@ -1,0 +1,598 @@
+/* Основні кольори */
+:root {
+    --primary-bg: #121212; /* Темне основне тло */
+    --secondary-bg: #181818; /* Темний фон для шапки та футера */
+    --accent: #1DB954; /* Зелений відтінок Spotify */
+    --text-color: #FFFFFF; /* Білий текст */
+    --text-muted: #B3B3B3; /* Світло-сірий для неактивного тексту */
+    --card-bg: #2a2a2a; /* Темний фон для карток */
+    --card-border: #333; /* Легкий контур для карток */
+}
+
+/* Загальні стилі */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+}
+
+/* Шапка */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--secondary-bg);
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header .logo img {
+    height: 40px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+nav ul li a:hover {
+    color: var(--text-color);
+}
+
+/* Основний контент */
+main {
+    padding: 20px;
+}
+
+/* Футер */
+footer {
+    text-align: center;
+    background-color: var(--secondary-bg);
+    color: var(--text-muted);
+    padding: 10px;
+}
+
+/* Стилі для блоків артистів та альбомів */
+.artists-section, .albums-section {
+    padding: 30px;
+}
+
+.artists-section h2, .albums-section h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+/* Списки артистів та альбомів */
+.artists-list, .albums-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.artist-item, .album-item {
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    border: 1px solid var(--card-border);
+    transition: all 0.3s ease;
+}
+
+.artist-item h3, .album-item h3 {
+    font-size: 22px;
+    color: var(--text-color);
+}
+
+.artist-item p, .album-item p {
+    font-size: 16px;
+    color: var(--text-muted);
+}
+
+.artist-item:hover, .album-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Посилання для перегляду альбомів/пісень */
+.view-albums-link, .view-songs-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.view-albums-link:hover, .view-songs-link:hover {
+    text-decoration: underline;
+}
+
+/* Стилі для плеєра */
+.audio-player {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--card-bg);
+    padding: 15px;
+    border-radius: 10px;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid var(--card-border);
+}
+
+.audio-player audio {
+    width: 100%;
+    border-radius: 10px;
+    outline: none;
+    background-color: var(--secondary-bg);
+    border: none;
+}
+
+.audio-player button {
+    background-color: var(--accent);
+    color: white;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.audio-player button:hover {
+    background-color: #1ed760;
+    transform: scale(1.05);
+}
+
+footer {
+    background-color: var(--secondary-bg);
+    padding: 10px;
+    text-align: center;
+    color: var(--text-muted);
+    margin-top: 40px;
+}
+/* Видалити підкреслення тільки для посилань у списках */
+.artist-item a, .album-item a, .song-item a {
+    text-decoration: none;
+}
+
+.artist-item a:hover, .album-item a:hover, .song-item a:hover {
+    color: #1DB954; /* Або будь-який інший колір для ефекту при наведенні */
+}
+
+
+.dashboard-container {
+    display: flex;
+    gap: 20px;
+}
+
+/* Ліва панель */
+.sidebar {
+    width: 20%;
+    background-color: var(--secondary-bg);
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h2 {
+    font-size: 20px;
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+
+.recent-songs-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.recent-song-item {
+    margin-bottom: 10px;
+}
+
+.recent-song-item a {
+    text-decoration: none;
+    color: var(--accent);
+    font-size: 16px;
+}
+
+.recent-song-item a:hover {
+    text-decoration: underline;
+}
+
+/* Основний контент */
+.main-content {
+    width: 70%;
+}
+
+/* Загальні стилі для лівої панелі */
+.sidebar {
+    width: 30%;
+    background-color: var(--secondary-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h2 {
+    font-size: 20px;
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+.recent-songs-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Стиль для кожного пункту списку */
+.recent-song-item {
+    margin-bottom: 15px;
+}
+
+/* Стиль для клікабельного посилання */
+.recent-song-item a {
+    text-decoration: none;
+    color: var(--text-color);
+    display: block;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: var(--primary-bg);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Вміст картки пісні */
+.song-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.song-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.song-genre {
+    font-size: 14px;
+    color: var(--muted-text);
+}
+
+/* Анімація при наведенні */
+.recent-song-item a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    background-color: var(--accent-bg);
+    color: var(--text-color-light);
+}
+.dashboard-container {
+    display: flex;
+    gap: 20px;
+}
+
+/* Ліва панель */
+.sidebar {
+    width: 30%;
+    background-color: var(--secondary-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h2 {
+    font-size: 20px;
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+
+.recent-songs-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.recent-song-item {
+    margin-bottom: 10px;
+}
+
+.recent-song-item a {
+    text-decoration: none;
+    color: var(--accent);
+    font-size: 16px;
+}
+
+.recent-song-item a:hover {
+    text-decoration: underline;
+}
+
+/* Основний контент */
+.main-content {
+    width: 70%;
+}
+
+.profile-section {
+    background-color: var(--secondary-bg);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-section h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.profile-section p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.logout-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--accent-bg);
+    color: var(--text-color-light);
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: background-color 0.2s;
+}
+
+.logout-btn:hover {
+    background-color: var(--accent-color-dark);
+}
+/* Випадаюче меню */
+.account-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.account-menu .dropdown-toggle {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 10px 15px;
+}
+
+.account-menu .dropdown {
+    display: none; /* Сховати меню за замовчуванням */
+    position: absolute;
+    background-color: var(--secondary-bg);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+    z-index: 10;
+}
+
+.account-menu .dropdown li {
+    margin: 0;
+}
+
+.account-menu .dropdown li a {
+    display: block;
+    padding: 10px 15px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.account-menu .dropdown li a:hover {
+    color: var(--text-color);
+    background-color: var(--primary-bg);
+    border-radius: 5px;
+}
+
+/* Показ меню при наведенні */
+.account-menu:hover .dropdown {
+    display: block;
+}
+
+.custom-player {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #181818; /* Темний фон */
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.custom-player .play-pause {
+    background-color: #1db954; /* Зелений акцент */
+    border: none;
+    color: white;
+    font-size: 18px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.custom-player .play-pause:hover {
+    background-color: #1ed760; /* Трохи світліший зелений при наведенні */
+}
+
+.custom-player .progress-bar {
+    flex-grow: 1;
+    height: 5px;
+    background-color: #404040; /* Темно-сірий фон */
+    border-radius: 2.5px;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.custom-player .progress-bar .progress {
+    height: 100%;
+    width: 0;
+    background-color: #1db954; /* Зелений прогрес */
+    border-radius: 2.5px;
+    transition: width 0.1s linear;
+}
+
+.custom-player .time {
+    font-size: 14px;
+    color: #b3b3b3; /* Світло-сірий текст */
+    font-family: Arial, sans-serif;
+}
+
+.custom-player .volume-slider {
+    width: 80px;
+    cursor: pointer;
+    appearance: none;
+    background-color: #404040; /* Темний фон для слайдера */
+    border-radius: 5px;
+    height: 5px;
+}
+
+.custom-player .volume-slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #1db954; /* Зелений повзунок */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.custom-player .volume-slider::-webkit-slider-thumb:hover {
+    background-color: #1ed760; /* Світліший зелений при наведенні */
+}
+
+.sidebar {
+    position: sticky;
+    top: 145px;
+    align-self: flex-start;
+    width: 30%;
+    background-color: var(--secondary-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    height: auto;
+}
+
+.sidebar h2 {
+    font-size: 20px;
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+.genre-filters {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.genre-filters li {
+    margin-bottom: 10px;
+}
+
+.genre-button {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.genre-button:hover {
+    background-color: var(--accent-color-dark);
+}
+
+h2 {
+    font-family: Arial, sans-serif, Georgia;
+    margin: 20px;
+    margin-left: 45%;
+    text-shadow: #404040;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: var(--primary-bg);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--primary-bg);
+    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.1);
+    background-size: 1cm;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 5px 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px 0 0 4px;
+    outline: none;
+    font-size: 14px;
+}
+
+.search-button {
+    padding: 5px 10px;
+    background-color: var(--accent-color);
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    color: white;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.search-button:hover {
+    background-color: var(--accent-color-dark);
+}
+

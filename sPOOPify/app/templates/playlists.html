@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="playlists-container">
+    <h2>Your playlists</h2>
+    {% if playlists %}
+    <ul class="playlists-list">
+        {% for playlist in playlists %}
+        <li><a href="{{url_for('main.playlist', playlist_id = playlist.id)}}">{{ playlist.name }}</a></li>
+    {% endfor %}
+    </ul>
+    {% else %}
+    <p>you do not have any playlists</p>
+    {% endif %}
+</div>
+
+<button id="CreatePlaylistButton"> Create new playlist </button>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const CreatePlaylistButton = document.getElementById('CreatePlaylistButton') ;
+        const PlaylistsList = document.querySelector('.playlists-list') ;
+        if(CreatePlaylistButton){
+            CreatePlaylistButton.addEventListener('click', function() {
+                const PlaylistName = prompt('Please enter the name for your future playlist.') ;
+                if(PlaylistName){
+                    fetch('{{url_for("main.playlists")}}',{
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: new URLSearchParams({ name: PlaylistName }),
+
+                    })
+                    .then(respone => {
+                        if(response.ok){
+                            return respone.json();
+                        }
+                        throw new Error('An error occured while creating a playlist');
+                        
+                    })
+                    .then(data => {
+                        const NewPlaylist = document.createElement('li');
+                        NewPlaylist.textContent = data.name;
+                        PlaylistsList.appendChild(NewPlaylist);
+
+                    })
+                    .catch(error => console.error(error));
+                }
+            });
+        }
+
+    });
+</script>
+
+{% endblock %}

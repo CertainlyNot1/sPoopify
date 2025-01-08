@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="artist-section">
+    <h2>{{ artist.name }}</h2>
+    <p>{{ artist.bio }}</p>
+    <h3>Albums:</h3>
+    <ul>
+        {% for album in artist.albums %}
+            <li><a href="{{ url_for('main.album', album_id=album.id) }}">{{ album.title }}</a></li>
+        {% endfor %}
+    </ul>
+</section>
+
+{% endblock %}

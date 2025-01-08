@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{{ playlist.name }}</h2>
+
+{% if playlist.songs %}
+    <ul>
+        <li>
+            {% for song in playlist.songs %}
+        
+        <p>{{ song.title }} - {{ song.artist.name }}</p>
+
+        <div class="audio-container"></div>
+            <div class="custom-player" data-song="{{ url_for('static', filename='music/' + song.file_path)}}">
+                <button class="play-pause">▶️</button>
+                <div class="progress-bar">
+                    <div class="progress"></div>
+                </div>
+                <span class="time">0:00</span>
+                <input type="range" class="volume-slider" min="0" max="1" step="0.1" value="1">
+            </div>
+        </div>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>This playlist does not have any songs innit.</p>
+    {% endif %}
+{% endblock %}

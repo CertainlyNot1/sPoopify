@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Search results:</h2>
+{% if results.albums or results.songs or results.artists %}
+ <section>
+    <h3>Albums found:</h3>
+    {% if results.albums %}
+    <ul>
+        {% for album in results.albums %}
+        <li><a href="{{ url_for('main.album', album_id=album.id) }}">{{album.title}}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <h4>The album was not found</h4>
+    {% endif %}
+ </section>
+
+ <section>
+    <h3>Songs found:</h3>
+    {% if results.songs %}
+    <ul>
+        {%for song in results.songs%}
+        <li><a href="{{ url_for('main.song', song_id=song.id) }}">{{song.title}}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <h4>The song was not found</h4>
+    {% endif %}
+ </section>
+
+ <section>
+    <h3>Artists found:</h3>
+    {% if results.artists%}
+    <ul>
+        {%for artist in results.artists%}
+        <li><a href="{{ url_for('main.artist', artist_id=artist.id) }}">{{artist.name}}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <h4>The artist was not found</h4>
+    {% endif %}
+ </section>
+{% else %}
+<h4>We're sorry, but nothing was found to your interest.</h4>
+{% endif %}
+{% endblock %}

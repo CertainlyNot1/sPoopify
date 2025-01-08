@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+    <section class="song-section">
+        <h2>{{ song.title }}</h2>
+        <p>{{ song.genre }}</p>
+        <div class="audio-container">
+            <div class="custom-player" data-song="{{ url_for('static', filename='music/' + song.file_path)}}">
+                <button class="play-pause">▶️</button>
+                <div class="progress-bar">
+                    <div class="progress"></div>
+                </div>
+                <span class="time">0:00</span>
+                <input type="range" class="volume-slider" min="0" max="1" step="0.1" value="1">
+            </div>
+        </div>
+        <select class="playlist-select" data-song-id="{{ song.id }}">
+            {% for playlist in user_playlists %}
+                <option value="{{ playlist.id }}">{{playlist.name}}</option>
+            {% endfor %}
+        </select>
+        <button class="add-to-playlist-btn" data-song-id="{{ song.id }}">Add to playlist.</button>
+    </section>
+    <script>
+    
+
+        document.querySelectorAll('.add-to-playlist-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            const songId = button.dataset.songId;
+            const playlistSelect = document.querySelector(`.playlist-select[data-song-id="${songId}"]`);
+            const playlistId = playlistSelect.value;
+
+            if (!playlistId) {
+                alert('Choose a playlist!');
+                return;
+            }
+
+            fetch('/addTo_playlist', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    song_id: songId,
+                    playlist_id: playlistId
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+            })
+            .catch(error => console.error('Error code:', error));
+        });
+    });
+</script>
+
+{% endblock %}
